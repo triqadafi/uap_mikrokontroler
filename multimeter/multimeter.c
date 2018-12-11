@@ -80,11 +80,11 @@ void main(void)
     while (1){
         v_1 = (read_adc(0)/1024.0) * v_ref * 1000;
         v_2 = (read_adc(1)/1024.0) * v_ref * 1000;
-        sprintf(buff,"V1: %04.2f mV", v_1);
+        sprintf(buff,"V1: %07.2f mV", v_1);
         lcd_gotoxy(0,0);
         lcd_puts(buff);
         lcd_gotoxy(0,1);
-        sprintf(buff,"V2: %04.2f mV", v_2);
+        sprintf(buff,"V2: %07.2f mV", v_2);
         lcd_puts(buff);
         delay_ms(500);
     }

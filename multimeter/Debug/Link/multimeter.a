@@ -169,7 +169,7 @@
 ;PCODE: $00000044 VOL: 0
 ;PCODE: $00000045 VOL: 0
 ;PCODE: $00000046 VOL: 0
-; 0000 0053         sprintf(buff,"V1: %04.2f mV", v_1);
+; 0000 0053         sprintf(buff,"V1: %07.2f mV", v_1);
 ;PCODE: $00000047 VOL: 0
 ;PCODE: $00000048 VOL: 0
 ;PCODE: $00000049 VOL: 0
@@ -194,7 +194,7 @@
 ;PCODE: $00000059 VOL: 0
 ;PCODE: $0000005A VOL: 0
 ;PCODE: $0000005B VOL: 0
-; 0000 0057         sprintf(buff,"V2: %04.2f mV", v_2);
+; 0000 0057         sprintf(buff,"V2: %07.2f mV", v_2);
 ;PCODE: $0000005C VOL: 0
 ;PCODE: $0000005D VOL: 0
 ;PCODE: $0000005E VOL: 0

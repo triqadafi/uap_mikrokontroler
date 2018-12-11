@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  C:\Users\PeCe Triqadafi\Documents\CodeVisionAVR\uap_mikrokontroler\multimeter\Debug\List\multimeter.asm Tue Dec 11 15:53:46 2018
+AVRASM ver. 2.1.30  C:\Users\PeCe Triqadafi\Documents\CodeVisionAVR\uap_mikrokontroler\multimeter\Debug\List\multimeter.asm Tue Dec 11 15:58:54 2018
 
 C:\Users\PeCe Triqadafi\Documents\CodeVisionAVR\uap_mikrokontroler\multimeter\Debug\List\multimeter.asm(1095): warning: Register r5 already defined by the .DEF directive
 C:\Users\PeCe Triqadafi\Documents\CodeVisionAVR\uap_mikrokontroler\multimeter\Debug\List\multimeter.asm(1096): warning: Register r4 already defined by the .DEF directive
@@ -1139,15 +1139,15 @@ C:\Users\PeCe Triqadafi\Documents\CodeVisionAVR\uap_mikrokontroler\multimeter\De
 00002c 3156
 00002d 203a
 00002e 3025
-00002f 2e34      	.DB  0x56,0x31,0x3A,0x20,0x25,0x30,0x34,0x2E
+00002f 2e37      	.DB  0x56,0x31,0x3A,0x20,0x25,0x30,0x37,0x2E
 000030 6632
 000031 6d20
 000032 0056
 000033 3256      	.DB  0x32,0x66,0x20,0x6D,0x56,0x0,0x56,0x32
 000034 203a
 000035 3025
-000036 2e34
-000037 6632      	.DB  0x3A,0x20,0x25,0x30,0x34,0x2E,0x32,0x66
+000036 2e37
+000037 6632      	.DB  0x3A,0x20,0x25,0x30,0x37,0x2E,0x32,0x66
 000038 6d20
 000039 0056      	.DB  0x20,0x6D,0x56,0x0
                  _0x2000003:
@@ -1406,7 +1406,7 @@ C:\Users\PeCe Triqadafi\Documents\CodeVisionAVR\uap_mikrokontroler\multimeter\De
 0000a3 93f0 0169 	STS  _v_2+1,R31
 0000a5 9360 016a 	STS  _v_2+2,R22
 0000a7 9370 016b 	STS  _v_2+3,R23
-                 ; 0000 0053         sprintf(buff,"V1: %04.2f mV", v_1);
+                 ; 0000 0053         sprintf(buff,"V1: %07.2f mV", v_1);
 0000a9 d49f      	RCALL SUBOPT_0x1
                 +
 0000aa e5e8     +LDI R30 , LOW ( 2 * _0x0 + ( 0 ) )
@@ -1433,7 +1433,7 @@ C:\Users\PeCe Triqadafi\Documents\CodeVisionAVR\uap_mikrokontroler\multimeter\De
 0000bf 93ea      	ST   -Y,R30
 0000c0 e0a1      	LDI  R26,LOW(1)
 0000c1 d038      	RCALL _lcd_gotoxy
-                 ; 0000 0057         sprintf(buff,"V2: %04.2f mV", v_2);
+                 ; 0000 0057         sprintf(buff,"V2: %07.2f mV", v_2);
 0000c2 d486      	RCALL SUBOPT_0x1
                 +
 0000c3 e6e6     +LDI R30 , LOW ( 2 * _0x0 + ( 14 ) )
