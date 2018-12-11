@@ -78,7 +78,6 @@ void main(void)
 
 
     while (1){
-        // Place your code here
         v_1 = (read_adc(0)/1024.0) * v_ref * 1000;
         v_2 = (read_adc(1)/1024.0) * v_ref * 1000;
         sprintf(buff,"V1: %03.2f mV", v_1);
@@ -87,5 +86,6 @@ void main(void)
         lcd_gotoxy(0,1);
         sprintf(buff,"V2: %03.2f mV", v_2);
         lcd_puts(buff);
+        delay_ms(500);
     }
 }

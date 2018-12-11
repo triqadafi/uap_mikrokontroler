@@ -44,7 +44,7 @@ unsigned int read_adc(unsigned char adc_input)
 }
 
     
-    float v_ref = 1.15;
+    float v_ref = 5;
     float v_1 = 0;
     float v_2 = 0;
     char buff[16];
@@ -80,11 +80,12 @@ void main(void)
     while (1){
         v_1 = (read_adc(0)/1024.0) * v_ref * 1000;
         v_2 = (read_adc(1)/1024.0) * v_ref * 1000;
-        sprintf(buff,"V1: %03.2f mV", v_1);
+        sprintf(buff,"V1: %04.2f mV", v_1);
         lcd_gotoxy(0,0);
         lcd_puts(buff);
         lcd_gotoxy(0,1);
-        sprintf(buff,"V2: %03.2f mV", v_2);
+        sprintf(buff,"V2: %04.2f mV", v_2);
         lcd_puts(buff);
+        delay_ms(500);
     }
 }

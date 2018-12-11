@@ -1126,11 +1126,12 @@ __START_OF_CODE:
 	JMP  0x00
 
 _0x6:
-	.DB  0x33,0x33,0x93,0x3F
+	.DB  0x0,0x0,0xA0,0x40
 _0x0:
-	.DB  0x56,0x31,0x3A,0x20,0x25,0x30,0x2E,0x32
-	.DB  0x66,0x76,0x0,0x56,0x32,0x3A,0x20,0x25
-	.DB  0x30,0x2E,0x32,0x66,0x76,0x0
+	.DB  0x56,0x31,0x3A,0x20,0x25,0x30,0x34,0x2E
+	.DB  0x32,0x66,0x20,0x6D,0x56,0x0,0x56,0x32
+	.DB  0x3A,0x20,0x25,0x30,0x34,0x2E,0x32,0x66
+	.DB  0x20,0x6D,0x56,0x0
 _0x2000003:
 	.DB  0x80,0xC0
 _0x2020000:
@@ -1307,7 +1308,7 @@ _0x3:
 ; .FEND
 ;
 ;
-;    float v_ref = 1.15;
+;    float v_ref = 5;
 
 	.DSEG
 ;    float v_1 = 0;
@@ -1360,22 +1361,21 @@ _main:
 ; 0000 004F 
 ; 0000 0050     while (1){
 _0x7:
-; 0000 0051         // Place your code here
-; 0000 0052         v_1 = (read_adc(0)/1024.0) * v_ref;
+; 0000 0051         v_1 = (read_adc(0)/1024.0) * v_ref * 1000;
 	LDI  R26,LOW(0)
 	RCALL SUBOPT_0x0
 	STS  _v_1,R30
 	STS  _v_1+1,R31
 	STS  _v_1+2,R22
 	STS  _v_1+3,R23
-; 0000 0053         v_2 = (read_adc(1)/1024.0) * v_ref;
+; 0000 0052         v_2 = (read_adc(1)/1024.0) * v_ref * 1000;
 	LDI  R26,LOW(1)
 	RCALL SUBOPT_0x0
 	STS  _v_2,R30
 	STS  _v_2+1,R31
 	STS  _v_2+2,R22
 	STS  _v_2+3,R23
-; 0000 0054         sprintf(buff,"V1: %0.2fv", v_1);
+; 0000 0053         sprintf(buff,"V1: %04.2f mV", v_1);
 	RCALL SUBOPT_0x1
 	__POINTW1FN _0x0,0
 	ST   -Y,R31
@@ -1385,23 +1385,23 @@ _0x7:
 	LDS  R22,_v_1+2
 	LDS  R23,_v_1+3
 	RCALL SUBOPT_0x2
-; 0000 0055         lcd_gotoxy(0,0);
+; 0000 0054         lcd_gotoxy(0,0);
 	LDI  R30,LOW(0)
 	ST   -Y,R30
 	LDI  R26,LOW(0)
 	RCALL _lcd_gotoxy
-; 0000 0056         lcd_puts(buff);
+; 0000 0055         lcd_puts(buff);
 	LDI  R26,LOW(_buff)
 	LDI  R27,HIGH(_buff)
 	RCALL _lcd_puts
-; 0000 0057         lcd_gotoxy(0,1);
+; 0000 0056         lcd_gotoxy(0,1);
 	LDI  R30,LOW(0)
 	ST   -Y,R30
 	LDI  R26,LOW(1)
 	RCALL _lcd_gotoxy
-; 0000 0058         sprintf(buff,"V2: %0.2fv", v_2);
+; 0000 0057         sprintf(buff,"V2: %04.2f mV", v_2);
 	RCALL SUBOPT_0x1
-	__POINTW1FN _0x0,11
+	__POINTW1FN _0x0,14
 	ST   -Y,R31
 	ST   -Y,R30
 	LDS  R30,_v_2
@@ -1409,10 +1409,14 @@ _0x7:
 	LDS  R22,_v_2+2
 	LDS  R23,_v_2+3
 	RCALL SUBOPT_0x2
-; 0000 0059         lcd_puts(buff);
+; 0000 0058         lcd_puts(buff);
 	LDI  R26,LOW(_buff)
 	LDI  R27,HIGH(_buff)
 	RCALL _lcd_puts
+; 0000 0059         delay_ms(500);
+	LDI  R26,LOW(500)
+	LDI  R27,HIGH(500)
+	RCALL _delay_ms
 ; 0000 005A     }
 	RJMP _0x7
 ; 0000 005B }
@@ -2734,7 +2738,7 @@ __seed_G105:
 	.BYTE 0x4
 
 	.CSEG
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:17 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:22 WORDS
 SUBOPT_0x0:
 	RCALL _read_adc
 	CLR  R22
@@ -2748,6 +2752,8 @@ SUBOPT_0x0:
 	LDS  R27,_v_ref+1
 	LDS  R24,_v_ref+2
 	LDS  R25,_v_ref+3
+	RCALL __MULF12
+	__GETD2N 0x447A0000
 	RCALL __MULF12
 	RET
 
